@@ -48,6 +48,7 @@ namespace WowHeadParser
             comboBoxLocale.Items.Add("pt");
             comboBoxLocale.Items.Add("ru");
             comboBoxLocale.Items.Add("cn");
+            comboBoxLocale.Items.Add("ko");
 
             comboBoxChoice.SelectedIndex = 0;
 
@@ -84,6 +85,7 @@ namespace WowHeadParser
                 case "ru": Properties.Settings.Default.localIndex = (int)LocaleConstant.ruRU; break;
                 case "cn": Properties.Settings.Default.localIndex = (int)LocaleConstant.zhCN; break;
                 case "tw": Properties.Settings.Default.localIndex = (int)LocaleConstant.zhTW; break;
+                case "ko": Properties.Settings.Default.localIndex = (int)LocaleConstant.koKR; break;
                 default: Properties.Settings.Default.localIndex = (int)LocaleConstant.enUS; break;
             }
 
@@ -103,7 +105,7 @@ namespace WowHeadParser
         {
             Boolean success = false;
             setProgressBar(0);
-            if (comboBoxEntity.SelectedIndex == 0 || comboBoxEntity.SelectedIndex == 5)
+            if (comboBoxEntity.SelectedIndex == 4)
             {
                 System.Windows.Forms.MessageBox.Show("Not implemented.", "Error!");
                 return success;
