@@ -30,12 +30,10 @@ namespace WowHeadParser.Entities
 
         static public void ReloadWowheadBaseUrl()
         {
-            m_baseWowheadUrl = "https://" + Properties.Settings.Default.wowheadLocale + ".wowhead.com";
+            m_baseWowheadUrl = "https://" + Properties.Settings.Default.wowheadLocale + ".wowhead.com/classic";
         }
 
         public virtual String GetWowheadUrl() { return ""; }
-
-        public virtual String GetVersion() { return Properties.Settings.Default.version; }
 
         public virtual List<Entity> GetIdsFromZone(String zoneId, String zoneHtml) { return new List<Entity>(); }
 

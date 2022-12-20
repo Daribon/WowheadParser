@@ -44,7 +44,6 @@
             this.rightListView = new System.Windows.Forms.ListView();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.ProgressBarValue = new System.Windows.Forms.Label();
-            this.comboBoxVersion = new System.Windows.Forms.ComboBox();
             this.leftDataGroup.SuspendLayout();
             this.rightDataGroup.SuspendLayout();
             this.SuspendLayout();
@@ -225,21 +224,11 @@
             this.ProgressBarValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ProgressBarValue.UseCompatibleTextRendering = true;
             // 
-            // comboBoxVersion
-            // 
-            this.comboBoxVersion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxVersion.FormattingEnabled = true;
-            this.comboBoxVersion.Location = new System.Drawing.Point(69, 248);
-            this.comboBoxVersion.Name = "comboBoxVersion";
-            this.comboBoxVersion.Size = new System.Drawing.Size(82, 21);
-            this.comboBoxVersion.TabIndex = 15;
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(465, 277);
-            this.Controls.Add(this.comboBoxVersion);
             this.Controls.Add(this.rightDataGroup);
             this.Controls.Add(this.leftDataGroup);
             this.Controls.Add(this.label1);
@@ -282,7 +271,6 @@
         private System.Windows.Forms.ListView rightListView;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label ProgressBarValue;
-        private System.Windows.Forms.ComboBox comboBoxVersion;
     }
 }
 

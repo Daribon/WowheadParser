@@ -260,24 +260,11 @@ namespace WowHeadParser.Entities
 
         public void SetTeam(bool isAlliance, bool isHorde)
         {
-            switch (GetVersion())
             {
-                case "9.2.0.42560":
-                {
-                    ulong team = isAlliance ? 6130900294268439629 : isHorde ? 18446744073709551615 : 0;
-
-                    m_builderRequiredTeam.SetFieldsNames("AllowableRaces");
-                    m_builderRequiredTeam.AppendFieldsValue(m_data.id, team);
-                }
-                break;
-                default: // 8.x and 7.x
-                {
                     Int32 team = isAlliance ? 0 : isHorde ? 1 : -1;
 
                     m_builderRequiredTeam.SetFieldsNames("requiredTeam");
                     m_builderRequiredTeam.AppendFieldsValue(m_data.id, team);
-                }
-                break;
             }
         }
 

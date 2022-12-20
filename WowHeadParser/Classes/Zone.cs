@@ -50,8 +50,7 @@ namespace WowHeadParser
             ResetZone();
             m_zoneId = zone;
 
-            if (askedEntity.GetType() != typeof(BlackMarket))
-                m_zoneHtml = GetZoneHtmlFromWowhead(m_zoneId);
+            m_zoneHtml = GetZoneHtmlFromWowhead(m_zoneId);
 
             ParseZoneJson();
             StartSnifByEntity();

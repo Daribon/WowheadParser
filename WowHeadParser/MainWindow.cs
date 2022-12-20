@@ -34,7 +34,6 @@ namespace WowHeadParser
             comboBoxChoice.Items.Add("Range");
             comboBoxChoice.Items.Add("Zone");
 
-            comboBoxEntity.Items.Add("BlackMarket");
             comboBoxEntity.Items.Add("Creature");
             comboBoxEntity.Items.Add("Gameobject");
             comboBoxEntity.Items.Add("Item");
@@ -51,11 +50,6 @@ namespace WowHeadParser
             comboBoxLocale.Items.Add("cn");
 
             comboBoxChoice.SelectedIndex = 0;
-
-            comboBoxVersion.Items.Add("9.2.0.42560");
-            comboBoxVersion.Items.Add("8.0.1.28153");
-            comboBoxVersion.Items.Add("7.3.5.26972");
-            comboBoxVersion.SelectedIndex = 0;
 
             HideToTextbox(true);
             HideDataGroups(true);
@@ -74,10 +68,8 @@ namespace WowHeadParser
         private void parseBtn_Click(object sender, EventArgs e)
         {
             String selectedLocale = comboBoxLocale.Items[comboBoxLocale.SelectedIndex].ToString();
-            String selectedVersion = comboBoxVersion.Items[comboBoxVersion.SelectedIndex].ToString();
             Properties.Settings.Default.wowheadLocale = selectedLocale;
             Properties.Settings.Default.selectedEntity = comboBoxEntity.SelectedIndex;
-            Properties.Settings.Default.version = selectedVersion;
             Entity.ReloadWowheadBaseUrl();
             UpdateCheckboxSettings(); // Must be done before Properties.Settings.Default.Save
 
@@ -262,16 +254,8 @@ namespace WowHeadParser
 
             switch (comboBoxEntity.SelectedIndex)
             {
-                // Black Market
-                case 0:
-                {
-                    leftDataGroup.Show();
-                    leftDataGroup.Text = "Data";
-                    leftListView.Items.Add("Debug");
-                    break;
-                }
                 // Creature
-                case 1:
+                case 0:
                 {
                     HideDataGroups(false);
                     leftDataGroup.Text = "Data";
@@ -292,7 +276,7 @@ namespace WowHeadParser
                     break;
                 }
                 // Gameobject
-                case 2:
+                case 1:
                 {
                     leftDataGroup.Show();
                     leftDataGroup.Text = "Data";
@@ -303,7 +287,7 @@ namespace WowHeadParser
                     break;
                 }
                 // Item
-                case 3:
+                case 2:
                 {
                     leftDataGroup.Show();
                     leftDataGroup.Text = "Data";
@@ -314,7 +298,7 @@ namespace WowHeadParser
                     break;
                 }
                 // Quest
-                case 4:
+                case 3:
                 {
                     leftDataGroup.Show();
                     leftDataGroup.Text = "Data";
@@ -325,7 +309,7 @@ namespace WowHeadParser
                     break;
                 }
                 // Zone
-                case 5:
+                case 4:
                 {
                     leftDataGroup.Show();
                     leftDataGroup.Text = "Data";
@@ -355,12 +339,11 @@ namespace WowHeadParser
         {
             switch (Properties.Settings.Default.selectedEntity)
             {
-                case 0: return new BlackMarket(id);
-                case 1: return new Creature(id);
-                case 2: return new Gameobject(id);
-                case 3: return new Item(id);
-                case 4: return new Quest(id);
-                case 5: return new ZoneEntity(id);
+                case 0: return new Creature(id);
+                case 1: return new Gameobject(id);
+                case 2: return new Item(id);
+                case 3: return new Quest(id);
+                case 4: return new ZoneEntity(id);
             }
 
             return null;

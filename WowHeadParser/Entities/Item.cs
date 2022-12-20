@@ -177,20 +177,9 @@ namespace WowHeadParser.Entities
                         case 10: locale = "itIT"; break;
                     }
 
-                    switch (GetVersion())
                     {
-                        case "9.2.0.42560":
-                        {
-                            m_itemLocalesBuilder.SetFieldsNames("locale", "Description_lang", "Display3_lang", "Display2_lang", "Display1_lang", "Display_lang");
-                            m_itemLocalesBuilder.AppendFieldsValue(m_data.id, locale, "", "", "", "", m_data.name.Substring(1) ?? "");
-                        }
-                        break;
-                        default: // 8.x and 7.x
-                        {
                             m_itemLocalesBuilder.SetFieldsNames("Name_" + locale);
                             m_itemLocalesBuilder.AppendFieldsValue(m_data.id, m_data.name.Substring(1) ?? "");
-                        }
-                        break;
                     }
 
                     returnSql += m_itemLocalesBuilder.ToString() + "\n";
@@ -249,18 +238,8 @@ namespace WowHeadParser.Entities
             {
                 m_itemDroppedByBuilder = new SqlBuilder("creature_loot_template", "entry", SqlQueryType.InsertIgnore);
 
-                switch (GetVersion())
                 {
-                    case "9.2.0.42560":
-                    {
-                        m_itemDroppedByBuilder.SetFieldsNames("Item", "Chance", "LootMode", "GroupId", "MinCount", "MaxCount");
-                    }
-                    break;
-                    default: // 8.x and 7.x
-                    {
                         m_itemDroppedByBuilder.SetFieldsNames("item", "ChanceOrQuestChance", "lootmode", "groupid", "mincountOrRef", "maxcount", "itemBonuses");
-                    }
-                    break;
                 }
             
 
@@ -269,19 +248,7 @@ namespace WowHeadParser.Entities
                     float percent = ((float)itemDroppedByData.count / (float)itemDroppedByData.outof) * 100.0f;
                     String percentStr = Tools.NormalizeFloat(percent);
 
-                    switch (GetVersion())
-                    {
-                        case "9.2.0.42560":
-                        {
-                            m_itemDroppedByBuilder.AppendFieldsValue(itemDroppedByData.id, m_data.id, percentStr, 1, 0, "1", "1");
-                        }
-                        break;
-                        default: // 8.x and 7.x
-                        {
-                            m_itemDroppedByBuilder.AppendFieldsValue(itemDroppedByData.id, m_data.id, percentStr, 1, 0, "1", "1", "");
-                        }
-                        break;
-                    }
+                    m_itemDroppedByBuilder.AppendFieldsValue(itemDroppedByData.id, m_data.id, percentStr, 1, 0, "1", "1", "");
                 }
 
                 returnSql += "DELETE FROM creature_loot_template WHERE item = " + m_data.id + ";\n";
